@@ -1,0 +1,164 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 60px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+</div>
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-xl-12 order-xl-12">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">New Conference</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form #f="ngForm" (ngSubmit)="onSaveConference(f.value)">
+            <h6 class="heading-small text-muted mb-4">Conference information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-title">TITLE</label>
+                    <input type="text" id="input-title" ngModel required name="title" class="form-control form-control-alternative" placeholder="Title" value="Deep learnning">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-description">Description</label>
+                    <input type="text" id="input-description" ngModel required name="description" class="form-control form-control-alternative" placeholder="description" value="Deep learnning.......">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" >Date Début</label>
+                    <input type="date"  ngModel required name="startDate" class="form-control form-control-alternative" placeholder="Date Début">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" >Date Fin</label>
+                    <input type="date"  ngModel required name="endDate" class="form-control form-control-alternative" placeholder="Date Fin" value="Lucky">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" >Date Fin soumission</label>
+                    <input type="date"  ngModel required name="paperSubmissionlimitDate" class="form-control form-control-alternative" placeholder="Date Fin soumission">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" >Nombre de place</label>
+                    <input type="text"  ngModel required name="nbrPlaces" class="form-control form-control-alternative" placeholder="Nombre de Places" value="50">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" >Theme</label>
+                    <div>
+                      <select name="idTheme" class="form-control form-control-alternative" ngModel required>
+                        <option selected value="">Theme Conference ...</option>
+                        <option *ngFor="let u of ListeTheme?._embedded.themes" value="{{u.id}}" >{{ u.theme }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" >Audience</label>
+                    <div>
+                      <select name="idAudience" class="form-control form-control-alternative" ngModel required>
+                        <option selected value="">Level Conference ...</option>
+                        <option *ngFor="let a of ListeAudience?._embedded.audiences" value="{{a.id}}" >{{ a.level }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" >Commite</label>
+                    <div>
+                      <select name="committe" class="form-control form-control-alternative" (change)="addUser($event)">
+                        <option selected value="">Commite Conference ...</option>
+                        <option *ngFor="let u of ListeUsers?._embedded.appUsers" value="{{u.username}}" >{{u.username}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!--<div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" name="ListeCommites" >Commites</label>
+                    <div>
+                      <select formArrayName="ListeCommites" (change)="changement($event)" class="form-control form-control-alternative">
+                        <option selected value="">Commitée Conference ...</option>
+&lt;!&ndash;
+                        <option *ngFor="let u of ListeUsers?._embedded.appUsers" value="{{u.id}}" >{{u.username}}</option>
+&ndash;&gt;
+                        <option value="u&" >u1</option>
+                        <option value="u2">u2</option>
+                        <option value="u3">u3</option>
+                        <option value="u4" >u4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>-->
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact conference</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Address</label>
+                    <input id="input-address" ngModel required name="adresse" class="form-control form-control-alternative" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+                  </div>
+                </div>
+              </div>
+              <!--<div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-city">City</label>
+                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Country</label>
+                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Postal code</label>
+                    <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
+                  </div>
+                </div>
+                [disabled]="!f.valid"
+              </div>-->
+            </div>
+            <hr class="my-4" />
+            <!-- Description -->
+            <h6 class="heading-small text-muted mb-4">About !!</h6>
+            <div class="pl-lg-4">
+              <div class="form-group">
+                <label>About Me</label>
+                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+              </div>
+            </div>
+            <button  type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+      </div>
+
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <form role="form" #f="ngForm" (ngSubmit)="onSaveTasks(f.value)">
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                  </div>
+                  <input class="form-control" name="role" ngModel required placeholder="Role Name" type="text">
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" [disabled]="!f.valid" class="btn btn-primary mt-4">Save Role</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
